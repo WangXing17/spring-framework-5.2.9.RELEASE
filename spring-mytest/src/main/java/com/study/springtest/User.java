@@ -1,6 +1,8 @@
 package com.study.springtest;
 
-public class User {
+import org.springframework.beans.factory.FactoryBean;
+
+public class User implements FactoryBean<Car> {
 	private int uid;
 	private String username;
 
@@ -15,5 +17,15 @@ public class User {
 				"uid=" + uid +
 				", username='" + username + '\'' +
 				'}';
+	}
+
+	@Override
+	public Car getObject() throws Exception {
+		return new Car();
+	}
+
+	@Override
+	public Class<?> getObjectType() {
+		return Car.class;
 	}
 }
